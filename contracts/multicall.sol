@@ -14,6 +14,12 @@ interface Balance {
 }
 
 contract Multicall {
+    string public name = "Multicall";
+
+    function getName() public view returns(string memory){
+        return name;
+    }
+
     struct Call {
         address target;
         bytes callData;
