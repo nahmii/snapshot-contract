@@ -9,7 +9,6 @@
     "hardhat": "^2.7.0"
   },
   "dependencies": {
-    "@nahmii/hardhat-nvm": "^0.2.3",
-    "@snapshot-labs/snapshot.js": "^0.3.15"
+    "@nahmii/hardhat-nvm": "^0.2.3"
   }
 }
