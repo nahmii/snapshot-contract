@@ -1,4 +1,4 @@
-const { env } = require("hardhat/config");
+'use strict';
 
 require("@nomiclabs/hardhat-waffle");
 require('@nahmii/hardhat-nvm');
@@ -13,6 +13,13 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
   }
 });
 
+let accounts
+if (process.env.MNEMONIC) {
+  accounts = { mnemonic: process.env.MNEMONIC }
+}
+else if (process.env.PRIVATE_KEY) {
+  accounts = [process.env.PRIVATE_KEY]
+}
 
 // You need to export an object to set up your config
 // Go to https://hardhat.org/config/ to learn more
@@ -32,11 +39,10 @@ module.exports = {
   },
   networks: {
     nahmii: {
-      url: 'https://l2.testnet.nahmii.io/',
-      accounts: [`0x${env.PRIVATE_KEY}`],
+      url: process.env.L2_URL || 'https://l2.testnet.nahmii.io',
+      accounts,
       gasPrice: 15000000,
       nvm: true
     }
-    
   }
 };
